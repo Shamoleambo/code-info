@@ -1,10 +1,13 @@
 package com.tidz.code_info.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,6 +21,10 @@ public class ProgrammingLanguage {
 
 	@Column(name = "name")
 	private String name;
+
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@JoinColumn(name = "programmer_id")
+	private Programmer programmer;
 
 	public ProgrammingLanguage() {
 
@@ -42,6 +49,14 @@ public class ProgrammingLanguage {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Programmer getProgrammer() {
+		return programmer;
+	}
+
+	public void setProgrammer(Programmer programmer) {
+		this.programmer = programmer;
 	}
 
 	@Override

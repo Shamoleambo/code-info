@@ -1,12 +1,18 @@
 package com.tidz.code_info.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +38,10 @@ public class Programmer {
 	@Column(name = "years_of_experience")
 	private Integer yearsOfExperience;
 
+	@OneToMany(mappedBy = "programmer", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	private List<ProgrammingLanguage> programmingLanguages;
+
 	public Programmer() {
 
 	}
@@ -44,6 +54,15 @@ public class Programmer {
 		this.seniority = seniority;
 		this.position = position;
 		this.yearsOfExperience = yearsOfExperience;
+	}
+
+	public void addProgrammingLanguage(ProgrammingLanguage language) {
+		if (this.programmingLanguages == null) {
+			this.programmingLanguages = new ArrayList<>();
+		}
+
+		this.programmingLanguages.add(language);
+		language.setProgrammer(this);
 	}
 
 	public Long getId() {
