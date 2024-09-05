@@ -29,4 +29,10 @@ public class AppDAOImpl implements AppDAO {
 		this.entityManager.persist(programmer);
 	}
 
+	@Override
+	@Transactional
+	public void update(Programmer programmer) {
+		this.entityManager.merge(programmer);
+	}
+
 }

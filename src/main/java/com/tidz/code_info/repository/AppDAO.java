@@ -7,5 +7,7 @@ public interface AppDAO {
 	Programmer findProgrammerById(Long id);
 
 	void save(Programmer programmer);
+	
+	void update(Programmer programmer);
 
 }

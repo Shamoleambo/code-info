@@ -20,8 +20,26 @@ public class CodeInfoApplication {
 	@Bean
 	public CommandLineRunner run(AppDAO appDAO) {
 		return runner -> {
-			findProgrammer(appDAO);
+			updateProgrammer(appDAO);
 		};
+	}
+
+	private void updateProgrammer(AppDAO appDAO) {
+		Long id = 1L;
+		Programmer programmer = appDAO.findProgrammerById(id);
+
+		ProgrammingLanguage lang = new ProgrammingLanguage("C#");
+
+		System.out.println("Before: " + programmer);
+		programmer.setCompany("Le codé");
+		programmer.setPosition("ULTRA programmer");
+		programmer.addProgrammingLanguage(lang);
+		programmer.setSeniority(Seniority.SENIOR_ANALIST);
+
+		appDAO.update(programmer);
+		System.out.println("After: " + programmer);
+		System.out.println("Done!");
+
 	}
 
 	public void findProgrammer(AppDAO appDAO) {
