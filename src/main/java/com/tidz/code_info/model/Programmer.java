@@ -121,11 +121,19 @@ public class Programmer {
 		this.yearsOfExperience = yearsOfExperience;
 	}
 
+	public List<ProgrammingLanguage> getProgrammingLanguages() {
+		return programmingLanguages;
+	}
+
+	public void setProgrammingLanguages(List<ProgrammingLanguage> programmingLanguages) {
+		this.programmingLanguages = programmingLanguages;
+	}
+
 	@Override
 	public String toString() {
 		return "Programmer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", company=" + company
 				+ ", seniority=" + seniority + ", position=" + position + ", yearsOfExperience=" + yearsOfExperience
-				+ "]";
+				+ ", programmingLanguages=" + programmingLanguages + "]";
 	}
 
 }

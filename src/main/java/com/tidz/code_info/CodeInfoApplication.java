@@ -20,8 +20,15 @@ public class CodeInfoApplication {
 	@Bean
 	public CommandLineRunner run(AppDAO appDAO) {
 		return runner -> {
-			saveProgrammer(appDAO);
+			findProgrammer(appDAO);
 		};
+	}
+
+	public void findProgrammer(AppDAO appDAO) {
+		Long id = 1L;
+		Programmer programmer = appDAO.findProgrammerById(id);
+
+		System.out.println(programmer);
 	}
 
 	public void saveProgrammer(AppDAO appDAO) {

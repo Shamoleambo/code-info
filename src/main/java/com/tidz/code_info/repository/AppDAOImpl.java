@@ -19,6 +19,11 @@ public class AppDAOImpl implements AppDAO {
 	}
 
 	@Override
+	public Programmer findProgrammerById(Long id) {
+		return this.entityManager.find(Programmer.class, id);
+	}
+
+	@Override
 	@Transactional
 	public void save(Programmer programmer) {
 		this.entityManager.persist(programmer);
